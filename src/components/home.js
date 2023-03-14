@@ -10,7 +10,6 @@ import Divider from '@mui/material/Divider';
 
 const Home = () => {
     const [userName, setUserName] = useState('')
-    console.log(userName)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,6 +19,7 @@ const Home = () => {
         await formData.append('username', userName);
         await formData.append('email', email);
         await formData.append('password', password)
+
         let url = 'http://127.0.0.1:8000/signup/'
         axios.post(
             url,
