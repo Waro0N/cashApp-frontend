@@ -93,7 +93,7 @@ const Dashboard = () => {
     }
 
 
-
+    console.log(columns.length);
     return (
         <>
             <SideBar />
@@ -120,23 +120,31 @@ const Dashboard = () => {
 
                 />
                 <Container sx={{
-                    top: '50%',
-                    position: 'absolute',
-                    height: '100vh',
+                    p:10,
 
                 }}
-                    maxWidth="xl">
+                    >
+             
+
                     <Tabs aria-label="basic tabs example">
-                        <Tab onClick={recentCash} label="Today's Cash Flow" />
+                        <Tab onClick={recentCash} label="Today's Cash Flow"/>
                         <Tab onClick={monthlyCash} label="Monthly Cash Flow" />
                     </Tabs>
 
-                    <Box sx={{ p: 2, height: 400, width: '80%' }}>
+                    <Box sx={{ 
+                        p: 2, 
+                        height: 400, 
+                        width:`${columns.length * 12}%`,
+                        my:0,
+                        mx:'auto'
+                        }}>
                         <DataGrid
                             rows={rows}
                             columns={monthData ? columnsMonthly : columns}
                             disableRowSelectionOnClick
                         />
+                        
+                        
                     </Box>
                 </Container>
             </Container>
