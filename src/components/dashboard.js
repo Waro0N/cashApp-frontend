@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import Form from "../Forms/form";
 
 const columns = [
     { field: 'id', headerName: 'Date', width: 90 },
@@ -114,11 +115,9 @@ const Dashboard = () => {
                     maxWidth="xs">
                     <Chip label="+ Add your Category" onClick={handleCategory} />
                 </Container>
-                <TextField
-                    label='Username'
-                    variant='standard'
-
-                />
+                <div>
+                    <Form/>
+                </div>
                 <Container sx={{
                     p:10,
 

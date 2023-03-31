@@ -1,0 +1,39 @@
+
+
+form{
+    display: grid;
+    grid-template-columns: max-content minmax(200px,600px);
+    justify-content: left;
+    align-items: center;
+
+}
+
+input{
+    margin: 10px 20px;
+    padding: 5px;
+}
+
+input[type=submit]{
+    background-color: skyblue;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 8px;
+    width: 150px;
+    grid-column-start: -2 ;
+    justify-self: end;
+}
+
+#category{
+    margin: 10px 20px;
+    padding: 5px;
+}
+.show{
+    display: flex;
+    border: 1px solid red;
+    width: max-content;
+    padding: 10px;
+}
+
+.show p{
+    margin-left: 10px;
+}
