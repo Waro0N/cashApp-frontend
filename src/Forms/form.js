@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/style.css"
+import axios, { Axios } from 'axios';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Chip from '@mui/material/Chip';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
 
 const Form = () => {
-    const categories = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, reason: 'This is reason' },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, reason: 'This is reason' },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45, reason: 'This is reason' },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16, reason: 'This is reason' },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 26, reason: 'This is reason' },
-        { id: 6, lastName: 'Melisandre', firstName: null, age: 150, reason: 'This is reason' },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, reason: 'This is reason' },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, reason: 'This is reason' },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, reason: 'This is reason' },
-    ];
 
     const [input, setinput] = useState({
       debit:"",
@@ -23,7 +24,30 @@ const Form = () => {
     });
 
     
+    const [data, setData] = useState([]);
+    const [category_add, setCategory_add] = useState({
+      category_name:'',
+      created_by: '2'
+    })
+
+
+   
+   
+    
+    const [open, setOpen] = useState(false)
     const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+      axios
+      .get("http://127.0.0.1:8000/categories/user-categories/?created_by=2")
+       .then((res)=> setData(res.data)
+       
+       )
+    },[open])
+    
+
+
+
 
     const handelInput=(e)=>{
       const name= e.target.name;
@@ -38,8 +62,38 @@ const Form = () => {
         e.preventDefault();
         const newRecord ={ ...input, id:new Date().getTime().toString()}
           setRecords([...records, newRecord]);
+
+          console.log("my records",newRecord);
+
+    
       }
 
+      const handleCategory = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+         setOpen(false)
+        
+    }
+
+   
+    const handelCat= (e) =>{
+      setCategory_add({...category_add, [e.target.name] : e.target.value})
+      
+    }
+
+    const handleCreate = () => {
+      
+      console.log(category_add);
+        axios
+        .post("http://127.0.0.1:8000/categories/user-categories/",category_add)
+        .then((res) => console.log(res))
+        .catch((err) => console.log("error",err) )
+         setOpen(false)
+   
+    
+  }
 
   return (
     <>
@@ -75,6 +129,8 @@ name='reason' id='Reason' />
 
 
 <label htmlFor="Category">Category: </label>
+
+<div className='flex'>
 <select name="category" id="category"
 value={input.category}
 onChange={handelInput}
@@ -83,16 +139,27 @@ onChange={handelInput}
 <option value="">--Select Category--</option>
 
 {
-categories.map((get,index)=>(
-    <option value={get.age} key={index}>{get.age}</option>
+data.map((get)=>(
+    <option value={get.category_name} key={get.id}>{get.category_name}</option>
 ))
 }
 
 </select>
+<div>
+  <Container  maxWidth="xs">
+                    <Chip label="+ Add your Category" onClick={handleCategory} />
+                </Container>
+  </div>
+</div>
 
 
+
+<div className='submit'>
 
 <input type="submit" />
+
+  
+</div>
 </form>
 
   <div>
@@ -113,9 +180,35 @@ categories.map((get,index)=>(
       })
     }
   </div>
+
+  <Dialog open={open}>
+                <DialogTitle>Create Your Category</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+
+                    </DialogContentText>
+                    
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="catc"
+                        label="Name Your Category"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        name='category_name'
+                        onChange={handelCat}
+                    />
+                    
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleCreate}>Create</Button>
+                </DialogActions>
+            </Dialog>
     </>
   )
 }
 
 export default Form
-

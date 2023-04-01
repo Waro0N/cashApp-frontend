@@ -85,14 +85,9 @@ const Dashboard = () => {
         setMonthData(false)
     }
 
-    const handleCategory = () => {
-        setOpen(true)
-    }
+  
 
-    const handleClose = () => {
-        setOpen(false)
-    }
-
+  
 
     console.log(columns.length);
     return (
@@ -106,15 +101,7 @@ const Dashboard = () => {
             }}
                 maxWidth="xl">
                 <h1>This is Dashboard</h1>
-                <Container sx={{
-                    left: '70%',
-                    position: 'absolute',
-                    height: '100vh',
-
-                }}
-                    maxWidth="xs">
-                    <Chip label="+ Add your Category" onClick={handleCategory} />
-                </Container>
+               
                 <div>
                     <Form/>
                 </div>
@@ -147,29 +134,6 @@ const Dashboard = () => {
                     </Box>
                 </Container>
             </Container>
-            <Dialog open={open}>
-                <DialogTitle>Create Your Category</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Name Your Category"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                    />
-                    
-                    
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button>Create</Button>
-                </DialogActions>
-            </Dialog>
         </>
     )
 }

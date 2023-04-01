@@ -1,8 +1,6 @@
-
-
 form{
     display: grid;
-    grid-template-columns: max-content minmax(200px,600px);
+    grid-template-columns: max-content minmax(100px,400px);
     justify-content: left;
     align-items: center;
 
@@ -13,14 +11,24 @@ input{
     padding: 5px;
 }
 
-input[type=submit]{
+.submit{
+    grid-column-start: -2 ;
+    justify-self: end;
+}
+
+.submit input[type=submit]{
     background-color: skyblue;
     border: none;
     padding: 10px 40px;
     border-radius: 8px;
-    width: 150px;
-    grid-column-start: -2 ;
-    justify-self: end;
+    width: max-content;
+    cursor:pointer;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #category{

@@ -19,6 +19,7 @@
     "react-input-color": "^4.0.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.2",
     "styled-components": "^5.3.8",
     "web-vitals": "^2.1.4"
   },
