@@ -14,31 +14,32 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import Form from "../Forms/form";
+import axios from "axios";
 
 const columns = [
-    { field: 'id', headerName: 'Date', width: 90 },
+    { field: 'date', headerName: 'Date', width: 150 },
     {
-        field: 'firstName',
+        field: 'credit',
         headerName: 'Credit',
-        width: 150,
+        width: 100,
         editable: true,
     },
     {
-        field: 'lastName',
+        field: 'debit',
         headerName: 'Debit',
-        width: 150,
+        width: 100,
         editable: true,
     },
     {
         field: 'reason',
         headerName: 'Reason',
-        width: 110,
+        width: 200,
         editable: true,
     },
     {
-        field: 'age',
+        field: 'category_dashboard',
         headerName: 'Category',
-        width: 110,
+        width: 100,
         editable: true,
     },
 
@@ -47,13 +48,13 @@ const columns = [
 const columnsMonthly = [
     { field: 'id', headerName: 'Date', width: 90 },
     {
-        field: 'firstName',
+        field: 'category_dashboard',
         headerName: 'Category',
         width: 150,
         editable: true,
     },
     {
-        field: 'lastName',
+        field: 'debit',
         headerName: 'Expenses',
         width: 150,
         editable: true,
@@ -61,21 +62,20 @@ const columnsMonthly = [
 
 ]
 
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, reason: 'This is reason' },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, reason: 'This is reason' },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45, reason: 'This is reason' },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16, reason: 'This is reason' },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null, reason: 'This is reason' },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150, reason: 'This is reason' },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, reason: 'This is reason' },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, reason: 'This is reason' },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, reason: 'This is reason' },
-];
+
 
 const Dashboard = () => {
     const [monthData, setMonthData] = useState(false)
-    const [open, setOpen] = useState(false)
+    
+    const [rows, setRows] = useState([])
+
+useEffect(() => {
+    axios
+    .get("http://127.0.0.1:8000/cash-flow/dashboard/")
+     .then((res)=> setRows(res.data)
+     
+     )
+  },[])
 
     const monthlyCash = () => {
         setMonthData(true)
@@ -86,10 +86,6 @@ const Dashboard = () => {
     }
 
   
-
-  
-
-    console.log(columns.length);
     return (
         <>
             <SideBar />
@@ -112,10 +108,10 @@ const Dashboard = () => {
                     >
              
 
-                    <Tabs aria-label="basic tabs example">
+                    {/* <Tabs aria-label="basic tabs example">
                         <Tab onClick={recentCash} label="Today's Cash Flow"/>
                         <Tab onClick={monthlyCash} label="Monthly Cash Flow" />
-                    </Tabs>
+                    </Tabs> */}
 
                     <Box sx={{ 
                         p: 2, 

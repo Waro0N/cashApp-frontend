@@ -16,11 +16,11 @@ import Button from '@mui/material/Button';
 const Form = () => {
 
     const [input, setinput] = useState({
-      debit:"",
-      credit:"",
+      debit:"0",
+      credit:"0",
       reason:"",
       date:"",
-      category:""
+      category_dashboard:""
     });
 
     
@@ -37,6 +37,7 @@ const Form = () => {
     const [open, setOpen] = useState(false)
     const [records, setRecords] = useState([]);
 
+
     useEffect(() => {
       axios
       .get("http://127.0.0.1:8000/categories/user-categories/?created_by=2")
@@ -45,9 +46,6 @@ const Form = () => {
        )
     },[open])
     
-
-
-
 
     const handelInput=(e)=>{
       const name= e.target.name;
@@ -61,11 +59,11 @@ const Form = () => {
     const handelSubmit =(e)=>{
         e.preventDefault();
         const newRecord ={ ...input, id:new Date().getTime().toString()}
-          setRecords([...records, newRecord]);
-
-          console.log("my records",newRecord);
-
-    
+           axios
+          .post("http://127.0.0.1:8000/cash-flow/dashboard/",newRecord)
+          .then((res) => setinput.reset())
+          .catch((err) => console.log("error",err) )
+          
       }
 
       const handleCategory = () => {
@@ -107,7 +105,7 @@ name='date' id='date' />
 
 
 <label htmlFor="debit">Debit: </label>
-<input type="text" placeholder='Debit'
+<input type="number" placeholder='Debit' min="0"
 value={input.debit}
 onChange={handelInput}
 name='debit' id='debit' />
@@ -115,7 +113,7 @@ name='debit' id='debit' />
 
 
 <label htmlFor="credit">Credit: </label>
-<input type="text" placeholder='Credit'
+<input type="number" placeholder='Credit' min="0"
 value={input.credit}
 onChange={handelInput}
 name='credit' id='credit' />
@@ -131,8 +129,8 @@ name='reason' id='Reason' />
 <label htmlFor="Category">Category: </label>
 
 <div className='flex'>
-<select name="category" id="category"
-value={input.category}
+<select name="category_dashboard" id="category_dashboard"
+value={input.category_dashboard}
 onChange={handelInput}
 >
 
@@ -173,7 +171,7 @@ data.map((get)=>(
           <p> {curElem.debit}</p>
             <p> {curElem.credit}</p>
             <p> {curElem.reason}</p>
-            <p> {curElem.category}</p>
+            <p> {curElem.category_dashboard}</p>
             </div>
         )
 
