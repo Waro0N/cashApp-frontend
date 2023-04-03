@@ -3,21 +3,40 @@ import SideBar from "./sideBar"
 import Container from '@mui/material/Container';
 import Chart from 'chart.js/auto';
 import { Pie } from 'react-chartjs-2';
+import axios from "axios";
 
 
 const Analytics = () => {
+    const [graphData, setGraphData ] = useState({})
+    console.log(graphData)
 
-    const [chartData, setChartData] = useState({
-        labels: ['Food', 'Clothes', 'Movie'],
+    useEffect(()=>{
+      axios.get("http://127.0.0.1:8000/analytics/pie-graph/")
+      .then((res)=>{
+        setGraphData(res.data)
+      })
+    }, [])
+    
+    let catogory_data =[]
+    let debit=[]
+    
+    if (Object.keys(graphData).length > 0){
+      catogory_data = graphData.map((order)=>order.category_dashboard)
+      debit = graphData.map((order)=>order.debit)
+    }
+
+    // const lebal = ['Food', 'Clothes', 'Movie','okay']
+    // const datas = [300, 100, 50,40]
+    const chartData={
+        labels: catogory_data,
         datasets: [
           {
-            label: 'My First Dataset',
-            data: [300, 100, 50],
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-            hoverOffset: 4,
+            data: debit,
+            
           },
         ],
-      });
+      };
+
 
       const [chartOptions, setChartOptions] = useState({
         responsive: true,
