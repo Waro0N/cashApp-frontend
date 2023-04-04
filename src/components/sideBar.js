@@ -43,7 +43,7 @@ const SideBar = () => {
                     <Divider />
                     <ListItemButton
                         component={Link}
-                        to="/details"
+                        to="/calender-details"
                         sx={{ margin: '7px' }}>
                         <ListItemText primary='Cashflow Details' />
                     </ListItemButton>
