@@ -24,6 +24,7 @@ const Analytics = () => {
     catogory_data = graphData.map((order) => order.category_dashboard)
     debit = graphData.map((order) => order.debit)
   }
+
   const generateColors = (count) => {
     const colors = [];
     const hexValues = ['00', '33', '66', '99', 'CC', 'FF'];

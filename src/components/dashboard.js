@@ -66,16 +66,26 @@ const columnsMonthly = [
 
 const Dashboard = () => {
     const [monthData, setMonthData] = useState(false)
-    
+    const [getDashboard, setGetDashboard] = useState(true)
+    console.log(getDashboard)
     const [rows, setRows] = useState([])
 
-useEffect(() => {
-    axios
-    .get("http://127.0.0.1:8000/cash-flow/dashboard/?created_by=2")
-     .then((res)=> setRows(res.data)
-     
-     )
-  },[])
+    useEffect(() => {
+        if (getDashboard) {
+            axios
+                .get("http://127.0.0.1:8000/cash-flow/dashboard/?created_by=2")
+                .then((res) => {
+                    setRows(res.data)
+                    setGetDashboard(false)
+                }
+
+                )
+        }
+    }, [getDashboard])
+
+    const handleSubmit = (value) =>{
+        setGetDashboard(value)
+    }
 
     const monthlyCash = () => {
         setMonthData(true)
@@ -85,7 +95,7 @@ useEffect(() => {
         setMonthData(false)
     }
 
-  
+
     return (
         <>
             <SideBar />
@@ -97,36 +107,36 @@ useEffect(() => {
             }}
                 maxWidth="xl">
                 <h1>This is Dashboard</h1>
-               
+
                 <div>
-                    <Form/>
+                    <Form onSubmit={handleSubmit}/>
                 </div>
                 <Container sx={{
-                    p:10,
+                    p: 10,
 
                 }}
-                    >
-             
+                >
+
 
                     {/* <Tabs aria-label="basic tabs example">
                         <Tab onClick={recentCash} label="Today's Cash Flow"/>
                         <Tab onClick={monthlyCash} label="Monthly Cash Flow" />
                     </Tabs> */}
 
-                    <Box sx={{ 
-                        p: 2, 
-                        height: 400, 
-                        width:`${columns.length * 12}%`,
-                        my:0,
-                        mx:'auto'
-                        }}>
+                    <Box sx={{
+                        p: 2,
+                        height: 400,
+                        width: `${columns.length * 12}%`,
+                        my: 0,
+                        mx: 'auto'
+                    }}>
                         <DataGrid
                             rows={rows}
                             columns={monthData ? columnsMonthly : columns}
                             disableRowSelectionOnClick
                         />
-                        
-                        
+
+
                     </Box>
                 </Container>
             </Container>

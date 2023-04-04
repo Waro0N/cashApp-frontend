@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 
 
 
-const Form = () => {
+const Form = (props) => {
 
   const [input, setinput] = useState({
     debit: "0",
@@ -59,10 +59,11 @@ const Form = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
+    props.onSubmit(true)
     const newRecord = { ...input, id: new Date().getTime().toString() }
     axios
       .post("http://127.0.0.1:8000/cash-flow/dashboard/", newRecord)
-      .then((res) => setinput.reset())
+      .then((res) => console.log('Submitted'))
       .catch((err) => console.log("error", err))
 
   }
@@ -150,14 +151,8 @@ const Form = () => {
             </Container>
           </div>
         </div>
-
-
-
         <div className='submit'>
-
           <input type="submit" />
-
-
         </div>
       </form>
 
