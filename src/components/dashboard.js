@@ -67,7 +67,6 @@ const columnsMonthly = [
 const Dashboard = () => {
     const [monthData, setMonthData] = useState(false)
     const [getDashboard, setGetDashboard] = useState(true)
-    console.log(getDashboard)
     const [rows, setRows] = useState([])
 
     useEffect(() => {
