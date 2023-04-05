@@ -21,14 +21,14 @@ const Form = (props) => {
     reason: "",
     date: "",
     category_dashboard: "",
-    created_by: 2
+    created_by: 1
   });
 
 
   const [data, setData] = useState([]);
   const [category_add, setCategory_add] = useState({
     category_name: '',
-    created_by: '2'
+    created_by: '1'
   })
 
 
@@ -41,7 +41,7 @@ const Form = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/categories/user-categories/?created_by=2")
+      .get("http://127.0.0.1:8000/categories/user-categories/?created_by=1")
       .then((res) => setData(res.data)
 
       )

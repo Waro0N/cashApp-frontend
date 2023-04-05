@@ -72,7 +72,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (getDashboard) {
             axios
-                .get("http://127.0.0.1:8000/cash-flow/dashboard/?created_by=2&ordering=-id")
+                .get("http://127.0.0.1:8000/cash-flow/dashboard/?created_by=1&ordering=-id")
                 .then((res) => {
                     setRows(res.data)
                     setGetDashboard(false)
