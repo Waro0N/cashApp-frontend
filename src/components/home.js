@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 
 const Home = () => {
     const [userName, setUserName] = useState('')
+    console.log(userName)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -19,15 +20,18 @@ const Home = () => {
         await formData.append('username', userName);
         await formData.append('email', email);
         await formData.append('password', password)
-
+        
         let url = 'http://127.0.0.1:8000/profiles/users/'
         axios.post(
             url,
             formData
         ).then(async (res) => {
-
+        setUserName('')
+        setEmail('')
+        setPassword('')
+        console.log('Form reset')
         })
-
+        
     }
     return (
         <>
@@ -58,6 +62,7 @@ const Home = () => {
                             onChange={async (e) => {
                                 await setUserName(e.target.value)
                             }}
+                            value={userName}
                         />
                     </Box>
                     <Box
@@ -71,6 +76,7 @@ const Home = () => {
                             onChange={async (e) => {
                                 await setEmail(e.target.value)
                             }}
+                            value={email}
                         />
                     </Box>
                     <Box
@@ -85,6 +91,7 @@ const Home = () => {
                             onChange={async (e) => {
                                 await setPassword(e.target.value)
                             }}
+                            value={password}
                         />
                     </Box>
                     <Box
