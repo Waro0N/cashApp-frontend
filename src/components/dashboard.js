@@ -3,16 +3,6 @@ import SideBar from "./sideBar"
 import Container from '@mui/material/Container';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Chip from '@mui/material/Chip';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
 import Form from "../Forms/form";
 import axios from "axios";
 
@@ -86,13 +76,13 @@ const Dashboard = () => {
         setGetDashboard(value)
     }
 
-    const monthlyCash = () => {
-        setMonthData(true)
-    }
+    // const monthlyCash = () => {
+    //     setMonthData(true)
+    // }
 
-    const recentCash = () => {
-        setMonthData(false)
-    }
+    // const recentCash = () => {
+    //     setMonthData(false)
+    // }
 
 
     return (

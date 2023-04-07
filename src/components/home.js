@@ -20,7 +20,7 @@ const Home = () => {
         await formData.append('email', email);
         await formData.append('password', password)
 
-        let url = 'http://127.0.0.1:8000/signup/'
+        let url = 'http://127.0.0.1:8000/profiles/users/'
         axios.post(
             url,
             formData
