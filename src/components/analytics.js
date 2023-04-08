@@ -11,7 +11,7 @@ const Analytics = () => {
   console.log(graphData)
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/analytics/pie-graph/")
+    axios.get("http://127.0.0.1:8000/analytics/pie-graph/?created_by=1")
       .then((res) => {
         setGraphData(res.data)
       })
