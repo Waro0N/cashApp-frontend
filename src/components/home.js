@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-
+import Grid from '@mui/material/Grid'; 
+import nerd from '../assests/Saly-10.png'
+import "../styles/style2.css"
+import saly16 from '../assests/Saly-16.png'
+import saly20 from '../assests/Saly-20.png'
+import saly1 from '../assests/Saly-1.png'
 
 
 const Home = () => {
@@ -34,75 +35,69 @@ const Home = () => {
         
     }
     return (
-        <>
-            <div>
-                <Container sx={{
-                    left: '35%',
-                    top: '20%',
-                    position: 'absolute',
-                    height: '50vh',
+        <>  
+        <div className="fig">
 
-                }}
-                    maxWidth="xs">
-                    <Box
-                        sx={{
-                            p: 2
-                        }}>
-                        <h1>Sign Up</h1>
-                        <Divider />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 2
-                        }}
-                    >
-                        <TextField
-                            label='Username'
-                            variant='standard'
-                            onChange={async (e) => {
-                                await setUserName(e.target.value)
-                            }}
-                            value={userName}
-                        />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 2
-                        }}
-                    >
-                        <TextField
-                            label='Email'
-                            variant='standard'
-                            onChange={async (e) => {
-                                await setEmail(e.target.value)
-                            }}
-                            value={email}
-                        />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 2
-                        }}
-                    >
-                        <TextField
-                            label='Password'
-                            variant='standard'
-                            type='password'
-                            onChange={async (e) => {
-                                await setPassword(e.target.value)
-                            }}
-                            value={password}
-                        />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 2
-                        }}
-                    >
-                        <Button onClick={submitForm} variant="outlined">Submit</Button>
-                    </Box>
-                </Container>
+        <div className="fig_glass">
+        
+            <div className="form">
+            
+                <form action="">
+                <div>
+            <h1 className="sar">
+Welcome<br/> Back!
+            </h1>
+        </div>
+                    <label htmlFor=""></label>
+                    <input type="email" placeholder="Username/Email"/>
+
+                    <label htmlFor=""></label>
+                    <input type="password" placeholder="Password"/>
+
+                    <div className="outro">
+           
+               Forgot Password?
+           
+        </div>
+                    <div className='submit2'>
+          <input  type="submit"/>
+        </div>
+
+        <div className="outro end">
+            
+                Don't have an account? <br></br>
+                <span>Sign Up!</span>
+            
+        </div>
+                </form>
             </div>
+
+
+
+        </div>
+
+
+
+
+
+
+        <div className="fig_nerdy">
+        <img src={nerd} className="fig_nerdy_img" alt="logo" />
+        </div>
+        <div className="fig_cube"></div>
+        <div className="fig_mushroom">
+            <img src={saly16} alt="saly16" />
+        </div>
+        <div className="fig_ufo">
+        <img src={saly20} alt="saly16" />
+        </div>
+        <div className="fig_rocket">
+        <img src={saly1} alt="saly16" />
+        </div>
+
+            </div>
+
+
         </>
     )
 }
