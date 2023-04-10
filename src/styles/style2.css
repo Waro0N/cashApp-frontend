@@ -30,7 +30,6 @@ z-index: -2;
     overflow-y: hidden;
     border-radius: 30px;
     
-    
 }
 
 .fig_nerdy{
@@ -112,7 +111,7 @@ backdrop-filter: blur(15px);
 border-radius: 30px;
 }
 
-form{
+.form2{
     display: flex !important;
     align-items: center;
     justify-content: center;

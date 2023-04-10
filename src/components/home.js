@@ -42,7 +42,7 @@ const Home = () => {
         
             <div className="form">
             
-                <form action="">
+                <form action="" className="form2">
                 <div>
             <h1 className="sar">
 Welcome<br/> Back!
