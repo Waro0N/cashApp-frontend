@@ -9,7 +9,7 @@ const CalenderDetail = () => {
     const [calData, setCalData ] = useState({})
     
     useEffect(() =>{
-        axios.get('http://127.0.0.1:8000/calenderapi/calender-by-month/?created_by=1')
+        axios.get('http://127.0.0.1:8000/calenderapi/calender-by-month/?created_by=1&month_filter=4')
         .then((res) =>{
             setCalData(res.data)
             console.log(res.data)
