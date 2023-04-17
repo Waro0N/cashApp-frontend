@@ -10,15 +10,15 @@ const CalenderDetail = () => {
     const currDate = new Date()
     const currMonth = currDate.getMonth() + 1
 
-    useEffect(() =>{
-        let url = 'http://127.0.0.1:8000/calenderapi/calender-by-month/?created_by=1&month_filter='
-        if (currMonth !== '' && currMonth !== undefined && currMonth !== '') url += currMonth
-        axios.get(url)
-        .then((res) =>{
-            setCalData(res.data)
-            console.log(res.data)
-        })
-    },[])
+    // useEffect(() =>{
+    //     let url = 'http://127.0.0.1:8000/calenderapi/calender-by-month/?created_by=1&month_filter='
+    //     if (currMonth !== '' && currMonth !== undefined && currMonth !== '') url += currMonth
+    //     axios.get(url)
+    //     .then((res) =>{
+    //         setCalData(res.data)
+    //         console.log(res.data)
+    //     })
+    // },[])
 
         // console.log(arg)
         
